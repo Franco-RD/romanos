@@ -30,9 +30,7 @@ def entero_a_romano(numero):
             list_numero[i] = int(list_numero[i])
             valor_romano += unidades.get(list_numero[i])
 
-    print(list_numero)  
-    print(valor_romano)  
-         
-    return 'MCMXCIV'
+    return valor_romano
+
 
 entero_a_romano(1994)
