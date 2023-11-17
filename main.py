@@ -5,8 +5,43 @@ dic_completo = {0: '', 1: 'I', 2: 'II', 3: 'III', 4: 'IV', 5: 'V', 6: 'VI', 7: '
                 100: 'C', 200: 'CC', 300: 'CCC', 400: 'CD', 500: 'D', 600: 'DC', 700: 'DCC', 800: 'DCCC', 900: 'CM',
                 1000: 'M', 2000: 'MM', 3000: 'MMM'}
 
+dic_romanos_a_enteros = {'I':1, 'V':5, 'X':10, 'L':50, 'C':100, 'D':500, 'M':1000,}
+
+
 class RomanNumbnerError(Exception): #Clase para devolver errores del programa. Le pasamos la clase Exception de python para los errores. 
     pass
+
+
+def romano_a_entero(romano:str) -> int:
+    valor_entero = 0
+    romano_lista = list(romano)
+    valor_ant = 0  #Por ahi lo tenemos que usar
+
+    for pos in range(0, len(romano_lista)):
+        if not pos == len(romano_lista)-1:  #Este if se encarga de todo menos de la ultima posicion. El else se encarga de eso.
+
+            if dic_romanos_a_enteros.get(romano_lista[pos]) < dic_romanos_a_enteros.get(romano_lista[pos+1]):
+                valor_entero = dic_romanos_a_enteros.get(romano_lista[pos+1]) - dic_romanos_a_enteros.get(romano_lista[pos])
+            else:
+                valor_entero += dic_romanos_a_enteros.get(romano_lista[pos])
+
+
+        else:               
+            if len(romano_lista) == 1:  #Si es una cadena de 1 caracter lo agrega con este if. 
+                valor_entero += dic_romanos_a_enteros.get(romano_lista[pos])
+
+            if dic_romanos_a_enteros.get(romano_lista[pos]) >= dic_romanos_a_enteros.get(romano_lista[pos-1]):                
+                pass
+
+            else:
+                valor_entero += dic_romanos_a_enteros.get(romano_lista[pos])
+            
+            
+
+
+    
+
+    return valor_entero
 
 
 def entero_a_romano(numero):
@@ -26,23 +61,8 @@ def entero_a_romano(numero):
         cont += 1           
         valor_num = valor_num/10 
 
-    '''
-    for i in range(0,len(list_numero)):
-        if i == 0:
-            list_numero[i] = int(list_numero[i])*1000
-            valor_romano += miles.get(list_numero[i])
-        elif i == 1:
-            list_numero[i] = int(list_numero[i])*100
-            valor_romano += centenas.get(list_numero[i])
-        elif i == 2:
-            list_numero[i] = int(list_numero[i])*10
-            valor_romano += decenas.get(list_numero[i])
-        else:
-            list_numero[i] = int(list_numero[i])
-            valor_romano += unidades.get(list_numero[i])
-    '''
-
     return valor_romano
 
 
-print(entero_a_romano(1994))
+
+print(romano_a_entero('III'))
