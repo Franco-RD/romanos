@@ -8,7 +8,7 @@ dic_completo = {0: '', 1: 'I', 2: 'II', 3: 'III', 4: 'IV', 5: 'V', 6: 'VI', 7: '
 dic_romanos_a_enteros = {'I':1, 'V':5, 'X':10, 'L':50, 'C':100, 'D':500, 'M':1000,}
 
 
-class RomanNumbnerError(Exception): #Clase para devolver errores del programa. Le pasamos la clase Exception de python para los errores. 
+class RomanNumberError(Exception): #Clase para devolver errores del programa. Le pasamos la clase Exception de python para los errores. 
     pass
 
 
@@ -19,9 +19,9 @@ def romano_a_entero(romano:str) -> int:
 
     for pos in range(0, len(romano_lista)):
         if not pos == len(romano_lista)-1:  #Este if se encarga de todo menos de la ultima posicion. El else se encarga de eso.
-
             if dic_romanos_a_enteros.get(romano_lista[pos]) < dic_romanos_a_enteros.get(romano_lista[pos+1]):
                 valor_entero = dic_romanos_a_enteros.get(romano_lista[pos+1]) - dic_romanos_a_enteros.get(romano_lista[pos])
+
             else:
                 valor_entero += dic_romanos_a_enteros.get(romano_lista[pos])
 
@@ -34,9 +34,7 @@ def romano_a_entero(romano:str) -> int:
                 pass
 
             elif dic_romanos_a_enteros.get(romano_lista[pos]) <= dic_romanos_a_enteros.get(romano_lista[pos-1]):
-                valor_entero += dic_romanos_a_enteros.get(romano_lista[pos])
-
-                    
+                valor_entero += dic_romanos_a_enteros.get(romano_lista[pos])                    
 
     return valor_entero
 
@@ -62,4 +60,4 @@ def entero_a_romano(numero):
 
 
 
-print(romano_a_entero('DCXVI'))
+print(romano_a_entero('MDCCXIII'))
