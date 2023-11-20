@@ -15,7 +15,7 @@ class RomanNumbnerError(Exception): #Clase para devolver errores del programa. L
 def romano_a_entero(romano:str) -> int:
     valor_entero = 0
     romano_lista = list(romano)
-    valor_ant = 0  #Por ahi lo tenemos que usar
+    #valor_ant = 0  #Por ahi lo tenemos que usar
 
     for pos in range(0, len(romano_lista)):
         if not pos == len(romano_lista)-1:  #Este if se encarga de todo menos de la ultima posicion. El else se encarga de eso.
@@ -26,18 +26,17 @@ def romano_a_entero(romano:str) -> int:
                 valor_entero += dic_romanos_a_enteros.get(romano_lista[pos])
 
 
-        else:               
+        else:  #Esta parte se encarga de la ultima posicion             
             if len(romano_lista) == 1:  #Si es una cadena de 1 caracter lo agrega con este if. 
                 valor_entero += dic_romanos_a_enteros.get(romano_lista[pos])
 
             elif dic_romanos_a_enteros.get(romano_lista[pos]) > dic_romanos_a_enteros.get(romano_lista[pos-1]):                
                 pass
 
-            elif dic_romanos_a_enteros.get(romano_lista[pos]) == dic_romanos_a_enteros.get(romano_lista[pos-1]):
+            elif dic_romanos_a_enteros.get(romano_lista[pos]) <= dic_romanos_a_enteros.get(romano_lista[pos-1]):
                 valor_entero += dic_romanos_a_enteros.get(romano_lista[pos])
 
-            else:
-                valor_entero += dic_romanos_a_enteros.get(romano_lista[pos])         
+                    
 
     return valor_entero
 
@@ -63,4 +62,4 @@ def entero_a_romano(numero):
 
 
 
-print(romano_a_entero('MDCCXIII'))
+print(romano_a_entero('DCXVI'))

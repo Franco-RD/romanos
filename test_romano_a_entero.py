@@ -12,3 +12,5 @@ def test_romano_a_entero_IV():
 def test_romano_a_entero_III():
     assert romano_a_entero('III') == 3
 
+def test_romano_a_entero_DCXVI():
+    assert romano_a_entero('DCXVI') == 616
