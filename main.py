@@ -30,16 +30,14 @@ def romano_a_entero(romano:str) -> int:
             if len(romano_lista) == 1:  #Si es una cadena de 1 caracter lo agrega con este if. 
                 valor_entero += dic_romanos_a_enteros.get(romano_lista[pos])
 
-            if dic_romanos_a_enteros.get(romano_lista[pos]) >= dic_romanos_a_enteros.get(romano_lista[pos-1]):                
+            elif dic_romanos_a_enteros.get(romano_lista[pos]) > dic_romanos_a_enteros.get(romano_lista[pos-1]):                
                 pass
 
-            else:
+            elif dic_romanos_a_enteros.get(romano_lista[pos]) == dic_romanos_a_enteros.get(romano_lista[pos-1]):
                 valor_entero += dic_romanos_a_enteros.get(romano_lista[pos])
-            
-            
 
-
-    
+            else:
+                valor_entero += dic_romanos_a_enteros.get(romano_lista[pos])         
 
     return valor_entero
 
@@ -65,4 +63,4 @@ def entero_a_romano(numero):
 
 
 
-print(romano_a_entero('III'))
+print(romano_a_entero('MDCCXIII'))
